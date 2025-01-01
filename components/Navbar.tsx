@@ -11,10 +11,10 @@ export function Navbar() {
           <Link href="/" className="hover:text-pastelPink transition-colors">
             Home
           </Link>
-          <Link href="/ssr" className="hover:text-pastelPink transition-colors">
+          <Link href="/SSR" className="hover:text-pastelPink transition-colors">
             SSR
           </Link>
-          <Link href="/csr" className="hover:text-pastelPink transition-colors">
+          <Link href="/CSR" className="hover:text-pastelPink transition-colors">
             CSR
           </Link>
         </div>
