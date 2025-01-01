@@ -1,6 +1,15 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
-async function getBooks() {
+interface Book {
+  id: number
+  name: string
+  author: string
+  type: string
+  price: number
+  available: boolean
+}
+
+async function getBooks(): Promise<Book[]> {
   const res = await fetch('https://simple-books-api.glitch.me/books')
   if (!res.ok) {
     throw new Error('Failed to fetch books')
@@ -15,7 +24,7 @@ export default async function BooksPage() {
     <div>
       <h1 className="text-3xl font-bold mb-6">Books (Server-side Fetching)</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {books.map((book: any) => (
+        {books.map((book: Book) => (
           <Card key={book.id}>
             <CardHeader>
               <CardTitle>{book.name}</CardTitle>
@@ -23,7 +32,8 @@ export default async function BooksPage() {
             <CardContent>
               <p>Author: {book.author}</p>
               <p>Type: {book.type}</p>
-              <p>Price: ${book.price}</p>
+              <p>Price: ${book.price.toFixed(2)}</p>
+              <p>Available: {book.available ? 'Yes' : 'No'}</p>
             </CardContent>
           </Card>
         ))}
@@ -31,4 +41,3 @@ export default async function BooksPage() {
     </div>
   )
 }
-
